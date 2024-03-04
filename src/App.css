@@ -41,7 +41,7 @@ input[type="text"] {
       font-size: 30px;
     }
     input[type="text"]{
-      padding: 5px;
+      padding: 0px;
     }
     form{
       padding:0 35px;
