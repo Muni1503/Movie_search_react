@@ -18,28 +18,32 @@ input[type="text"] {
   
 
   .element {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    padding:30px 50px;
   }
-  
-
-  .each-div {
-    margin: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  .each img{
+    padding: 20px 15px;
+  }
+  h1{
     text-align: center;
+    margin-bottom: 20px;
   }
-  
-  .each-div img {
-    width: 200px;
-    height: auto;
-    border-radius: 4px;
+  h3{
+    text-align: center;
+    margin-bottom: 30px;
   }
-  
-  .each-div p {
-    margin-top: 10px;
-    font-size: 16px;
+
+  @media (max-width: 768px) {
+    .each img{
+      width:35%;
+      padding-right:5%;
+    }
+    h1{
+      font-size: 30px;
+    }
+    input[type="text"]{
+      padding: 5px;
+    }
+    form{
+      padding:0 35px;
+    }
   }
-  

@@ -2,18 +2,17 @@ import React, { useEffect,useState } from 'react';
 import './App.css';
 
 function App() {
-  const[endPoint,setEndPoints]=useState('')
+  const [inputValue, setInputValue] = useState('');
+  const [filtered,setFiltered]=useState('')
 
-  const[container,setContainer]=useState([])
-
-  const[finalPoint,setFinalPoint]=useState('');
+  const [container,setContainer]=useState([])
   useEffect(() => {
-    const url = `https://online-movie-database.p.rapidapi.com/auto-complete?q=+${endPoint}`;
+    const url = 'https://imdb-top-100-movies.p.rapidapi.com/';;
     const options = {
       method: 'GET',
       headers: {
         'X-RapidAPI-Key': '8b1ce93f3dmshc0e71ad3a1aec8ep102da2jsna0fb89f698d2',
-        'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'
+        'X-RapidAPI-Host': 'imdb-top-100-movies.p.rapidapi.com'
       }
     };
 
@@ -21,47 +20,53 @@ function App() {
       try {
         const response = await fetch(url, options);
         const result = await response.json();
-        if (!result.d) {
+        if (!result) {
           throw new Error('Response data format is invalid');
         }
-        setContainer(result.d);
-        return result;
+        setContainer(result);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
     fetchData();
-  }, [finalPoint]);
+  }, '');
 
-  const onChangeHandler=(e)=>{
-    setEndPoints(e.target.value)
-  }
-
-  const submitHandler=(e)=>{
-    e.preventDefault()
-    setFinalPoint(endPoint)
-  }
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+    const filter=container.filter(movie=>movie.title.toLowerCase().includes(inputValue.toLowerCase()))
+    setFiltered(filter)
+  };
 
   return (
     <div className="App">
-      <form onSubmit={submitHandler}>
-
-          <input type="text" value={endPoint} onChange={onChangeHandler}/>
+      <h1>Welcome to Movie search</h1>
+      <h3>search for your favourite Movie</h3>
+      <form >
+          <input type="text" value={inputValue} onChange={handleInputChange} />
           <button type="submit">submit</button>
       </form>
-
       <div className='element'>
-        {container.map((item)=>{
-          return(
-            <div className="each-div">
-              <img src={item.i.imageUrl} alt="img"></img>
-              <p>{item.l}</p>
-            </div>
-          )
-        })}
-      </div>  
-    </div>
+        <div className='each'>
+
+          {filtered.length === 0 && inputValue && (
+            <p style={{ color: 'red', fontStyle: 'italic' }}>Sorry, there is no movie in the name "{inputValue}"</p>
+          )}
+          {inputValue
+            ? filtered.map((movie) => (
+               <img key={movie.id} src={movie.image} alt=""/>
+             ))
+            :container.map((movie)=>(
+              <img key={movie.id} src={movie.image} alt="" />
+             ))
+            }
+          </div>
+      </div>    
+
+
+
+
+</div>
   );
 }
 
