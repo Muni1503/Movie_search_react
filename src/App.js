@@ -7,14 +7,14 @@ function App() {
 
   const [container,setContainer]=useState([])
   useEffect(() => {
-    const url = 'https://imdb-top-100-movies.p.rapidapi.com/';;
-    const options = {
-      method: 'GET',
-      headers: {
-        'X-RapidAPI-Key': '8b1ce93f3dmshc0e71ad3a1aec8ep102da2jsna0fb89f698d2',
-        'X-RapidAPI-Host': 'imdb-top-100-movies.p.rapidapi.com'
-      }
-    };
+    const url = 'https://imdb-top-100-movies.p.rapidapi.com/';
+const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '2db78b1d95msh18d72bfcc58d5b2p141de9jsn7ec6770439fe',
+		'X-RapidAPI-Host': 'imdb-top-100-movies.p.rapidapi.com'
+	}
+}
 
     const fetchData = async () => {
       try {
