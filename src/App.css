@@ -47,4 +47,7 @@ input[type="text"] {
     input[type="text"]{
       padding: 5px;
     }
+    .display{
+      padding:10%
+    }
   }
