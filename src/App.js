@@ -49,11 +49,16 @@ const options = {
       <div className='element'>
         <div className='each'>
 
+
+
           {filtered.length === 0 && inputValue && (
             <p style={{ color: 'red', fontStyle: 'italic' }}>Sorry, there is no movie in the name "{inputValue}"</p>
           )}
-          {inputValue
-            ? filtered.map((movie) => (
+          {!(filtered.length===0)&& (<p className='display'>{filtered.length} Movies Matching your search</p>)}
+          {
+          inputValue
+            ? 
+            filtered.map((movie) => (
                <img key={movie.id} src={movie.image} alt=""/>
              ))
             :container.map((movie)=>(
